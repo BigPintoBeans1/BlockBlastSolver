@@ -1,0 +1,80 @@
+/*
+Block Blast Solver
+By - Emmett Roberts
+
+
+Purpose:
+
+The purpose of this program is to find a solution for the popular phone app
+called block blast. Given three pieces (demoPiece1.txt, demoPiece2.txt, and
+demoPiece3.txt) and a board with pieces already on it (demoBoard1.txt), the
+program will print out a solution board with the three pieces assembled on the
+original board. It will print out in the terminal which shape goes where and the
+order the shapes should be placed on the board.
+
+How it Works:
+
+The program starts by reading the borad configuration from the file
+demoBoard1.txt, which contains an 8x8 grid of 0s and 1s. A 1 represents an
+occupied square and a 0 represents an empty square. The user can change the
+board to their current situation by editing demoBoard1.txt before running the
+program.
+
+It also reads three shape configurations from separate files (demoPiece1.txt,
+demoPiece2.txt, demoPiece3.txt). Each shape is represented as a 5x5 grid of 0s
+and 1s, where 1 indicates part of the shape. The user can change each piece
+occording to their current situation. The order doesn't matter as long as you
+remember which piece is which when the program prints the solution order.
+
+Each shape is assigned a unique identifier (id) for tracking purposes.
+The program calculates the number of valid squares (1s) in each shape, which is
+used to determine where the shape can fit on the board. 
+
+The program generates all permutations of the three shapes to try different
+placement orders. For each permutation, it recursively attempts to place the
+shapes on the board using the solveHelper function. 
+
+The solveHelper function checks all possible positions on the board where the
+current shape can fit without overlapping existing shapes. If a shape is
+successfully placed, the program moves to the next shape. If no valid placement
+is found, it backtracks and tries a different position or permutation. After
+placing a shape, the program clears any full rows or columns on the board,
+following the original games' rules.
+
+If a valid solution is found, the program prints:
+The order of the shapes in the current permutation.
+The placement coordinates for each shape.
+The state of the board after each shape is placed.
+If no solution is found after trying all permutations, the program outputs "No
+solution found." 
+
+IF NO SOLUTION FOUND is printed, you have put in the board or pieces
+incorrectly. The game will always gives you a atleast one solution given your
+current board. 
+
+The program dynamically allocates memory for queues used to store potential
+placements for each shape. These are cleaned up in the destructor to prevent
+memory leaks.
+
+Data Structures:
+
+Vector and 2D vectors - used to represent the board and each piece.
+
+Queue - used to store potential placement coordinates for each shape on the
+board before looking for overlaps or out of bounds. 
+
+Pairs - the pairs in this program represent (x, y) coordinates of a shape's
+placement on the board.
+
+Structs - the shape struct was used to describe each piece with custom
+attributes including a shapeGrid, id, and valid Count.
+
+Algorithms:
+
+Recursive Backtracking - used to solve the puzzle. Tries to place each shape on
+the board at all valid positions. If a shape cannot be placed, the algorithm
+backtracks to try a different position or permutaiton.
+
+Permutations - used to generate all possible orders of the three shapes. Ensures
+that the program explores every possible sequence of shape placements.
+*/
